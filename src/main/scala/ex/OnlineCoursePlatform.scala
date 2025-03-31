@@ -90,7 +90,8 @@ trait OnlineCoursePlatform:
 end OnlineCoursePlatform
 
 object OnlineCoursePlatform:
-  private class OnlineCoursePlatformImpl(var courses: Sequence[Course], var enrollments: Sequence[(String, String)]) extends OnlineCoursePlatform:
+  private class OnlineCoursePlatformImpl(var courses: Sequence[Course], 
+                                         var enrollments: Sequence[(String, String)]) extends OnlineCoursePlatform:
     def addCourse(course: Course): Unit =
       if !courses.contains(course) then courses= Cons(course, courses)
 

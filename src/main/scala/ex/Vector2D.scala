@@ -25,7 +25,23 @@ trait Vector2D:
 
 object Vector2D:
   // Factory method to create Vector2D instances
-  def apply(x: Double, y: Double): Vector2D = ???
+  private class Vector2DImpl(xParam: Double, yParam: Double) extends Vector2D:
+    override def x: Double = xParam
+
+    override def y: Double = yParam
+
+    override def +(other: Vector2D): Vector2D = Vector2DImpl(other.x + xParam, other.y + yParam)
+
+    override def -(other: Vector2D): Vector2D = Vector2DImpl(xParam - other.x, yParam - other.y)
+
+    override def *(scalar: Double): Vector2D = Vector2DImpl(xParam * scalar, yParam * scalar)
+
+    override def dot(other: Vector2D): Double = xParam * other.x + yParam * other.y
+
+    override def magnitude: Double = sqrt(xParam * xParam + yParam * yParam)
+
+
+  def apply(x: Double, y: Double): Vector2D = Vector2DImpl(x, y)
 
   // Common vectors (optional but nice)
   val zero: Vector2D = apply(0.0, 0.0)
